@@ -1,4 +1,8 @@
 const asset = (path: string) => encodeURI(path)
+const campusAsset = (file: string) => asset(`/IGSB_ASSETS/${file}`)
+const companyLogoAsset = (file: string) => asset(`/IGSB_ASSETS/company-logos/${file}`)
+const recruiterLogoAsset = (file: string) => companyLogoAsset(`recruiter-logos/${file}`)
+const storyAsset = (file: string) => asset(`/IGSB_ASSETS/student-success-stories/${file}`)
 
 export const SITE_CONFIG = {
   name: 'IGSB Pune',
@@ -6,14 +10,14 @@ export const SITE_CONFIG = {
   description:
     'Accelerate your career. Maximize your potential with a placement-oriented MBA from Indira Global School of Business, Pune.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.indiraigsb.edu.in',
-  ogImage: asset('/IGSB_ASSETS/Campus Image .png'),
-  logo: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/IGSB logo.png'),
-  favicon: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Indira Logo .png'),
+  ogImage: campusAsset('campus-hero-background.png'),
+  logo: companyLogoAsset('igsb-logo.png'),
+  favicon: companyLogoAsset('indira-logo.png'),
   links: {
     website: 'https://www.indiraigsb.edu.in',
     admissions: 'https://www.indiraigsb.edu.in',
   },
-  brochurePath: '/igsb-mba-brochure.html',
+  brochurePath: '/igsb-brochure.pdf',
 }
 
 export const CONTACT_INFO = {
@@ -125,7 +129,7 @@ export const RECRUITER_GROUPS = [
     'Federal Bank',
     'BlackRock',
     'UBS',
-    'FINQAT',
+    'Fincart',
     'FIS',
     'IDFC First Bank',
     'Oriental Insurance',
@@ -183,178 +187,178 @@ export const CAMPUS_HIGHLIGHTS = [
 export const APPROVAL_LOGOS = [
   {
     name: 'IGSB',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/IGSB logo.png'),
+    src: companyLogoAsset('igsb-logo.png'),
   },
   {
     name: 'AICTE',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/AICTE-Logo-Vector.svg-.png'),
+    src: companyLogoAsset('aicte-logo.png'),
   },
   {
     name: 'SPPU',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Savitribai_Phule_Pune_University_Logo.png'),
+    src: companyLogoAsset('sppu-logo.png'),
   },
 ]
 
 export const RECRUITER_LOGOS = [
   {
     name: 'PwC',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/PwC_Company_Logo.svg.png'),
+    src: recruiterLogoAsset('pwc.png'),
   },
   {
     name: 'EY',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/ey-logo-png-transparent.png'),
+    src: recruiterLogoAsset('ey.png'),
   },
   {
     name: 'BNY Mellon',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/BNY MELLON.png'),
+    src: recruiterLogoAsset('bny-mellon.png'),
   },
   {
     name: 'KPMG',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/KPMG_blue_logo.svg.png'),
+    src: recruiterLogoAsset('kpmg.png'),
   },
   {
     name: 'Mastercard',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Mastercard-logo.svg.png'),
+    src: recruiterLogoAsset('mastercard.png'),
   },
   {
     name: 'Mercedes-Benz',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Mercedes-Benz_.png'),
+    src: recruiterLogoAsset('mercedes-benz.png'),
   },
   {
     name: 'NielsenIQ',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/NielsenIQ Logo.webp'),
+    src: recruiterLogoAsset('nielseniq.webp'),
   },
   {
     name: 'BlackRock',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/BlackRock-logo.png'),
+    src: recruiterLogoAsset('blackrock.png'),
   },
   {
     name: 'Flipkart',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Flipkart-logo.png'),
+    src: recruiterLogoAsset('flipkart.png'),
   },
   {
     name: 'Infosys',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Infosys_logo.png'),
+    src: recruiterLogoAsset('infosys.png'),
   },
   {
     name: 'Juspay',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/JUSPAY logo.png'),
+    src: recruiterLogoAsset('juspay.png'),
   },
   {
     name: 'Tata Technologies',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Tata_Technologies_logo.svg.png'),
+    src: recruiterLogoAsset('tata-technologies.png'),
   },
   {
     name: 'Deloitte',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/DeloitteNewLogo.png'),
+    src: recruiterLogoAsset('deloitte.png'),
   },
   {
     name: 'ANZ',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/ANZ-Logo.png'),
+    src: recruiterLogoAsset('anz.png'),
   },
   {
     name: 'Atlas Copco',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Atlas-Copco-Logo.svg.png'),
+    src: recruiterLogoAsset('atlas-copco.png'),
   },
   {
     name: 'Berkadia',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/BERKADIA LOGO.png'),
+    src: recruiterLogoAsset('berkadia.png'),
   },
   {
     name: 'Bajaj Allianz',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Bajaj_Allianz_Insurance.svg.png'),
+    src: recruiterLogoAsset('bajaj-allianz.png'),
   },
   {
     name: 'Berger Paints',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Berger Logo.png'),
+    src: recruiterLogoAsset('berger-paints.png'),
   },
   {
     name: 'FIS',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/FIS-Logo.png'),
+    src: recruiterLogoAsset('fis.png'),
   },
   {
     name: 'Federal Bank',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Federal_bank_India..png'),
+    src: recruiterLogoAsset('federal-bank.png'),
   },
   {
-    name: 'FINQAT',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/FINCART logo.png'),
+    name: 'Fincart',
+    src: recruiterLogoAsset('fincart.png'),
   },
   {
     name: 'HDFC Life',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/HDFC-Life-Logo.png'),
+    src: recruiterLogoAsset('hdfc-life.png'),
   },
   {
     name: 'Hindustan Unilever',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Hindustan-Unilever-Limited-logo.png'),
+    src: recruiterLogoAsset('hindustan-unilever.png'),
   },
   {
     name: 'IDFC First Bank',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Logo_of_IDFC_First_Bank.svg.png'),
+    src: recruiterLogoAsset('idfc-first-bank.png'),
   },
   {
     name: 'ITC Limited',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/ITC_Limited_Logo.svg.png'),
+    src: recruiterLogoAsset('itc.png'),
   },
   {
     name: 'KPIT',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/KPIT logo.png'),
+    src: recruiterLogoAsset('kpit.png'),
   },
   {
     name: 'Landmark Group',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Landmark Group Logo.png'),
+    src: recruiterLogoAsset('landmark-group.png'),
   },
   {
     name: 'Mondelez International',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Mondelez_international.png'),
+    src: recruiterLogoAsset('mondelez.png'),
   },
   {
-    name: 'Nestlé',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/png-transparent-nestle-logo-.png'),
+    name: 'Nestle',
+    src: recruiterLogoAsset('nestle.png'),
   },
   {
     name: 'Oriental Insurance',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/The_Oriental_Insurance_Company_Logo.svg.png'),
+    src: recruiterLogoAsset('oriental-insurance.png'),
   },
   {
     name: 'Philips',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/Philips logo.png'),
+    src: recruiterLogoAsset('philips.png'),
   },
   {
     name: 'UBS',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/UBS-logo.png'),
+    src: recruiterLogoAsset('ubs.png'),
   },
   {
     name: 'Vanderlande',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/vanderlande-logo.png'),
+    src: recruiterLogoAsset('vanderlande.png'),
   },
   {
     name: 'Volkswagen',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/volkswagen-logo.png'),
+    src: recruiterLogoAsset('volkswagen.png'),
   },
   {
     name: 'Whirlpool',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/whirlpool-logo-logo.png'),
+    src: recruiterLogoAsset('whirlpool.png'),
   },
   {
     name: 'Godrej Properties',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/godrej-brand-logo.png'),
+    src: recruiterLogoAsset('godrej-properties.png'),
   },
   {
     name: 'Haldiram\'s',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/-Haldirams-Logo-.png'),
+    src: recruiterLogoAsset('haldirams.png'),
   },
   {
     name: 'MRF',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/MRF-Logo.png'),
+    src: recruiterLogoAsset('mrf.png'),
   },
   {
     name: 'Namma Yatri',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/namma yatri.png'),
+    src: recruiterLogoAsset('namma-yatri.png'),
   },
   {
     name: 'Xanadu Realty',
-    src: asset('/IGSB_ASSETS/Company_Logo, IGSB_Logo & AICTE_SPPU/Recruiter Companies logo/XANADU logo.png'),
+    src: recruiterLogoAsset('xanadu-realty.png'),
   },
 ]
 
@@ -365,7 +369,7 @@ export const TESTIMONIALS = [
     outcome: 'Broadened her knowledge across analytics, finance, operations, and HR.',
     quote:
       'My experience at IGSB has been exceptional. The academic curriculum, guest lectures, and workshops across business analytics, finance, operations, and HR broadened my knowledge and shaped my professional journey.',
-    image: asset('/IGSB_ASSETS/Students_success_ story/Prachi Navghare .png'),
+    image: storyAsset('prachi-navghare.png'),
   },
   {
     name: 'Priyanka Koniti',
@@ -373,7 +377,7 @@ export const TESTIMONIALS = [
     outcome: 'Secured her dream role as a Branch Manager at Home First Finance Company.',
     quote:
       'I am very thankful to IGSB for helping me build the skills needed in the corporate world and guiding me toward my dream job.',
-    image: asset('/IGSB_ASSETS/Students_success_ story/Priyanka Koniti.png'),
+    image: storyAsset('priyanka-koniti.png'),
   },
   {
     name: 'Nikita Dalvi',
@@ -381,7 +385,7 @@ export const TESTIMONIALS = [
     outcome: 'Strengthened critical thinking and adaptability through a rigorous MBA journey.',
     quote:
       'Pursuing my MBA at IGSB was a transformative journey. A collaborative environment and rigorous curriculum challenged me to think critically and adapt quickly.',
-    image: asset('/IGSB_ASSETS/Students_success_ story/Nikita Dalvi .png'),
+    image: storyAsset('nikita-dalvi.png'),
   },
   {
     name: 'Nikhil Rokade',
@@ -389,7 +393,7 @@ export const TESTIMONIALS = [
     outcome: 'Experienced strong academic and personal development in a supportive campus environment.',
     quote:
       'My time at IGSB has been transformative. From the moment I stepped onto campus, I felt welcomed by peers and faculty in an environment that supported both academic growth and personal development.',
-    image: asset('/IGSB_ASSETS/Students_success_ story/Rokade Nikhil Dinesh .png'),
+    image: storyAsset('nikhil-rokade.png'),
   },
   {
     name: 'Suruchi Vishnu',
@@ -397,22 +401,22 @@ export const TESTIMONIALS = [
     outcome: 'Received a pre-placement offer at BNY after internship.',
     quote:
       'My time at IGSB was a game-changer. The faculty were supportive, the hands-on experience was invaluable, and I received a pre-placement offer at BNY after my internship.',
-    image: asset('/IGSB_ASSETS/Students_success_ story/Suruchi Vishnu .png'),
+    image: storyAsset('suruchi-vishnu.png'),
   },
 ]
 
 export const CAMPUS_IMAGES = {
-  heroBackground: asset('/IGSB_ASSETS/Campus Image .png'),
-  campus: asset('/IGSB_ASSETS/IGSB campus .png'),
-  femaleStudent: asset('/IGSB_ASSETS/Girl Student Cut out .png'),
-  maleStudent: asset('/IGSB_ASSETS/Student image (1).png'),
-  studentPortrait: asset('/IGSB_ASSETS/Student image .png'),
-  labStudents: asset('/IGSB_ASSETS/Copy of DSC09723.jpg'),
-  groupStudents: asset('/IGSB_ASSETS/Copy of DSC09839.jpg'),
-  libraryStacks: asset('/IGSB_ASSETS/Copy of DSC09585.jpg'),
-  computerLab: asset('/IGSB_ASSETS/Copy of DSC09715.jpg'),
-  hallwayTeam: asset('/IGSB_ASSETS/Copy of DSC09668.jpg'),
-  outdoorDiscussion: asset('/IGSB_ASSETS/Copy of DSC09794.jpg'),
-  laptopCollaboration: asset('/IGSB_ASSETS/Copy of DSC09869.jpg'),
-  placementGroup: asset('/IGSB_ASSETS/Copy of DSC09851.jpg'),
+  campusHeroBackdrop: campusAsset('campus-hero-background.png'),
+  campusFacade: campusAsset('igsb-campus-facade.png'),
+  mbaStudentCutout: campusAsset('mba-student-cutout.png'),
+  maleStudentCutout: campusAsset('male-student-cutout.png'),
+  studentPortraitFormal: campusAsset('female-student-portrait.png'),
+  labSessionGroup: campusAsset('mba-lab-session-group.jpg'),
+  studentGroupPortrait: campusAsset('mba-student-group-portrait.jpg'),
+  libraryResearchScene: campusAsset('library-research-scene.jpg'),
+  computerLabSession: campusAsset('computer-lab-session.jpg'),
+  hallwayTeamWalk: campusAsset('hallway-team-walk.jpg'),
+  outdoorLeadershipDiscussion: campusAsset('outdoor-leadership-discussion.jpg'),
+  laptopCollaborationSession: campusAsset('laptop-collaboration-session.jpg'),
+  placementReadyGroup: campusAsset('placement-ready-group.jpg'),
 }

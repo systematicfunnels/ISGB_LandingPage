@@ -91,7 +91,7 @@ export default function Hero() {
       {/* Enhanced Background */}
       <div className="absolute inset-0">
         <Image
-          src={CAMPUS_IMAGES.heroBackground}
+          src={CAMPUS_IMAGES.campusHeroBackdrop}
           alt="IGSB campus"
           fill
           className="object-cover object-center opacity-10"
@@ -292,7 +292,7 @@ export default function Hero() {
                       </p>
                     </div>
                     <Image
-                      src={CAMPUS_IMAGES.femaleStudent}
+                      src={CAMPUS_IMAGES.mbaStudentCutout}
                       alt="IGSB MBA Student"
                       fill
                       className="translate-y-6 scale-[1.08] object-contain object-bottom sm:translate-y-8 sm:scale-[1.1]"

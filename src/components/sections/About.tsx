@@ -12,7 +12,7 @@ export default function About() {
             <div className="mesh-surface rounded-[36px] p-3 shadow-[0_30px_100px_-45px_rgba(15,23,42,0.4)]">
               <div className="relative overflow-hidden rounded-[28px]">
                 <Image
-                  src={CAMPUS_IMAGES.campus}
+                  src={CAMPUS_IMAGES.campusFacade}
                   alt="IGSB campus environment"
                   width={1200}
                   height={900}

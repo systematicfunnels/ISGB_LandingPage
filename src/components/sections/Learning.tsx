@@ -40,7 +40,7 @@ export default function Learning() {
             <div className="reveal-up reveal-delay-1 spotlight-card hover-panel editorial-shell mesh-surface overflow-hidden p-3">
               <div className="relative overflow-hidden rounded-[26px]">
                 <Image
-                  src={CAMPUS_IMAGES.labStudents}
+                  src={CAMPUS_IMAGES.labSessionGroup}
                   alt="IGSB students in a lab setting"
                   width={1400}
                   height={900}
@@ -51,7 +51,7 @@ export default function Learning() {
             <div className="reveal-up reveal-delay-2 spotlight-card hover-panel editorial-shell overflow-hidden p-3">
               <div className="relative overflow-hidden rounded-[26px] bg-primary-50">
                 <Image
-                  src={CAMPUS_IMAGES.groupStudents}
+                  src={CAMPUS_IMAGES.studentGroupPortrait}
                   alt="IGSB students in a group learning setting"
                   width={900}
                   height={1300}

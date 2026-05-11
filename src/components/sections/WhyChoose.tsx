@@ -6,7 +6,7 @@ const whyChooseItems = [
   {
     title: 'Industry-Aligned MBA Curriculum',
     description: 'Built around current business expectations and practical management thinking.',
-    image: CAMPUS_IMAGES.libraryStacks,
+    image: CAMPUS_IMAGES.libraryResearchScene,
     alt: 'IGSB students using library learning resources',
     icon: Building2,
     imageClassName: 'object-cover object-center',
@@ -14,7 +14,7 @@ const whyChooseItems = [
   {
     title: 'Live Projects & Internship Opportunities',
     description: 'Hands-on exposure through projects, internships, and application-led learning.',
-    image: CAMPUS_IMAGES.computerLab,
+    image: CAMPUS_IMAGES.computerLabSession,
     alt: 'IGSB students in a computer lab environment',
     icon: BriefcaseBusiness,
     imageClassName: 'object-cover object-center',
@@ -22,7 +22,7 @@ const whyChooseItems = [
   {
     title: 'Corporate Exposure & Industry Interaction',
     description: 'Regular interaction with industry speakers, mentors, and corporate perspectives.',
-    image: CAMPUS_IMAGES.laptopCollaboration,
+    image: CAMPUS_IMAGES.laptopCollaborationSession,
     alt: 'IGSB students collaborating around a laptop',
     icon: GraduationCap,
     imageClassName: 'object-cover object-center',
@@ -30,7 +30,7 @@ const whyChooseItems = [
   {
     title: 'Leadership & Personality Development',
     description: 'Focused development of confidence, communication, and managerial presence.',
-    image: CAMPUS_IMAGES.outdoorDiscussion,
+    image: CAMPUS_IMAGES.outdoorLeadershipDiscussion,
     alt: 'IGSB students in a group discussion outdoors',
     icon: Sparkles,
     imageClassName: 'object-cover object-center',
@@ -38,7 +38,7 @@ const whyChooseItems = [
   {
     title: 'Placement-Focused Training from Day One',
     description: 'Structured preparation for interviews, aptitude, and placement readiness.',
-    image: CAMPUS_IMAGES.placementGroup,
+    image: CAMPUS_IMAGES.placementReadyGroup,
     alt: 'IGSB students in a professional group portrait',
     icon: Target,
     imageClassName: 'object-cover object-center',
