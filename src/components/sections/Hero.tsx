@@ -283,7 +283,7 @@ export default function Hero() {
                   <div className="absolute inset-x-8 bottom-0 top-12 overflow-hidden rounded-[32px] border border-white/14 bg-gradient-to-br from-white/96 via-[#f3efe5] to-[#dcedea] shadow-[0_28px_90px_rgba(15,23,42,0.24)] sm:inset-x-12 sm:top-10">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.35),transparent_34%)]" />
                     <div className="absolute inset-x-[8%] top-[8%] bottom-[8%] rounded-[28px] border border-white/60" />
-                    <div className="absolute right-5 top-5 z-20 rounded-[22px] border border-slate-200/80 bg-white/96 px-4 py-3 shadow-[0_18px_40px_rgba(15,23,42,0.22)] backdrop-blur-md sm:right-7 sm:top-7">
+                    <div className="absolute bottom-5 left-5 z-20 rounded-[22px] border border-slate-200/80 bg-white/96 px-4 py-3 shadow-[0_18px_40px_rgba(15,23,42,0.22)] backdrop-blur-md sm:bottom-7 sm:left-7">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary-700">
                         Average Package
                       </p>
