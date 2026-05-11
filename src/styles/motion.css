@@ -1,0 +1,372 @@
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes driftWide {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(8px, -12px, 0) rotate(1deg);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes storyMarquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.reveal-up {
+  opacity: 0;
+  animation: riseIn 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-play-state: paused;
+  will-change: opacity, transform;
+}
+
+.reveal-up.is-visible {
+  animation-play-state: running;
+}
+
+.reveal-delay-1 {
+  animation-delay: 100ms;
+}
+
+.reveal-delay-2 {
+  animation-delay: 180ms;
+}
+
+.reveal-delay-3 {
+  animation-delay: 260ms;
+}
+
+.reveal-delay-4 {
+  animation-delay: 340ms;
+}
+
+.float-soft {
+  animation: drift 6s ease-in-out infinite;
+}
+
+.float-wide {
+  animation: driftWide 9s ease-in-out infinite;
+}
+
+.hover-panel {
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 320ms ease,
+    background-color 320ms ease;
+}
+
+.hover-panel:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 80px -40px rgba(15, 23, 42, 0.35);
+}
+
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.16) 45%, transparent 70%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.spotlight-card:hover::after {
+  animation: shimmerSweep 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.orb-glow {
+  animation: glowPulse 8s ease-in-out infinite;
+}
+
+.story-marquee {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.story-marquee {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 3%,
+    black 97%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 3%,
+    black 97%,
+    transparent 100%
+  );
+}
+
+.story-marquee::-webkit-scrollbar {
+  display: none;
+}
+
+.story-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: storyMarquee 52s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.story-marquee:hover .story-marquee-track {
+  animation-play-state: paused;
+}
+
+.story-marquee-set {
+  display: flex;
+  gap: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.story-card {
+  width: clamp(17rem, 22vw, 21rem);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout paint;
+}
+
+.story-card-quote {
+  display: -webkit-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+}
+
+.story-card-highlight {
+  display: -webkit-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.story-card-body {
+  display: flex;
+  min-height: 18rem;
+  flex-direction: column;
+}
+
+.story-card-highlight-wrap {
+  margin-top: auto;
+}
+
+@media (max-width: 767px) {
+  .story-marquee {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 2%,
+      black 98%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 2%,
+      black 98%,
+      transparent 100%
+    );
+  }
+
+  .story-marquee-set {
+    gap: 1rem;
+    padding-right: 1rem;
+  }
+
+  .story-card {
+    width: min(80vw, 17.5rem);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .story-card {
+    width: clamp(18rem, 30vw, 19.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up {
+    opacity: 1;
+    animation: none !important;
+  }
+
+  .story-marquee {
+    overflow-x: auto;
+  }
+
+  .story-marquee::before,
+  .story-marquee::after {
+    display: none;
+  }
+
+  .story-marquee-track {
+    animation: none !important;
+  }
+
+  .story-marquee-copy {
+    display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Company Logo Marquee Animations */
+.company-marquee {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.company-marquee-row {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 30s linear infinite;
+}
+
+.company-marquee-row-reverse {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 30s linear infinite;
+}
+
+.company-marquee:hover .company-marquee-row {
+  animation-play-state: paused;
+}
+
+.company-marquee:hover .company-marquee-row-reverse {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.company-logo-item {
+  flex-shrink: 0;
+  width: 160px;
+  height: 80px;
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.company-logo-item:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.company-logo-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .company-logo-item {
+    width: 120px;
+    height: 60px;
+    margin: 0 12px;
+    padding: 12px;
+  }
+  
+  .company-marquee-row {
+    animation-duration: 25s;
+  }
+  
+  .company-marquee-row-reverse {
+    animation-duration: 25s;
+  }
+}
