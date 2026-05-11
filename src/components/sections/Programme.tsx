@@ -7,15 +7,15 @@ export default function Programme() {
     <section id="curriculum" className="section-shell">
       <div className="container-custom">
         <div className="soft-card overflow-hidden">
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
             <div>
               <p className="section-kicker">MBA Programme</p>
               <h2 className="section-title">2 Years | Full-Time</h2>
-              <p className="mt-6 text-lg leading-8 text-slate-600">
+              <p className="mt-5 text-lg leading-8 text-slate-600">
                 The IGSB MBA is designed for professional growth, leadership development, and long-term career success.
               </p>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 <div className="rounded-[24px] bg-slate-950 p-6 text-white">
                   <p className="grid-label !text-teal-200">Duration</p>
                   <p className="mt-3 text-3xl font-semibold">{PROGRAMME_DETAILS.duration}</p>
@@ -26,7 +26,7 @@ export default function Programme() {
                 </div>
               </div>
 
-              <div className="mt-6 rounded-[24px] border border-dashed border-primary-200 bg-primary-50/70 p-6">
+              <div className="mt-4 rounded-[24px] border border-dashed border-primary-200 bg-primary-50/70 p-5 sm:p-6">
                 <p className="grid-label">What Sets You Apart</p>
                 <div className="mt-4 grid gap-3">
                   {WHAT_SETS_YOU_APART.map((item) => (
@@ -39,9 +39,9 @@ export default function Programme() {
               </div>
             </div>
 
-            <div className="space-y-5">
-              <div className="rounded-[28px] bg-white p-6 shadow-[0_22px_70px_-42px_rgba(15,23,42,0.5)]">
-                <div className="mb-5 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex">
+              <div className="flex h-full w-full flex-col rounded-[28px] bg-white p-5 shadow-[0_22px_70px_-42px_rgba(15,23,42,0.5)] sm:p-5 md:p-6">
+                <div className="mb-3 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="grid-label">Specializations Offered</p>
                     <h3 className="mt-2 text-2xl font-semibold text-slate-950">Choose your focus area</h3>
@@ -62,6 +62,21 @@ export default function Programme() {
                       <p className="font-medium text-slate-700">{specialization}</p>
                     </div>
                   ))}
+                </div>
+
+                <div className="mt-4 grid gap-3 border-t border-slate-100 pt-4 sm:grid-cols-2">
+                  <div className="rounded-[20px] border border-primary-100 bg-primary-50/60 p-4">
+                    <p className="grid-label">Campus</p>
+                    <p className="mt-2 text-base font-semibold text-slate-900">
+                      {PROGRAMME_DETAILS.campus}
+                    </p>
+                  </div>
+                  <div className="rounded-[20px] border border-slate-200 bg-slate-50 p-4">
+                    <p className="grid-label">Career Focus</p>
+                    <p className="mt-2 text-base font-semibold text-slate-900">
+                      Placement-oriented and industry-ready MBA pathways
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

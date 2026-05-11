@@ -407,4 +407,12 @@ export const CAMPUS_IMAGES = {
   femaleStudent: asset('/IGSB_ASSETS/Girl Student Cut out .png'),
   maleStudent: asset('/IGSB_ASSETS/Student image (1).png'),
   studentPortrait: asset('/IGSB_ASSETS/Student image .png'),
+  labStudents: asset('/IGSB_ASSETS/Copy of DSC09723.jpg'),
+  groupStudents: asset('/IGSB_ASSETS/Copy of DSC09839.jpg'),
+  libraryStacks: asset('/IGSB_ASSETS/Copy of DSC09585.jpg'),
+  computerLab: asset('/IGSB_ASSETS/Copy of DSC09715.jpg'),
+  hallwayTeam: asset('/IGSB_ASSETS/Copy of DSC09668.jpg'),
+  outdoorDiscussion: asset('/IGSB_ASSETS/Copy of DSC09794.jpg'),
+  laptopCollaboration: asset('/IGSB_ASSETS/Copy of DSC09869.jpg'),
+  placementGroup: asset('/IGSB_ASSETS/Copy of DSC09851.jpg'),
 }

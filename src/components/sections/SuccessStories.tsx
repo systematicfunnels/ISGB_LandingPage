@@ -6,12 +6,12 @@ export default function SuccessStories() {
   return (
     <section className="section-shell">
       <div className="container-custom">
-        <div className="mb-10 max-w-3xl">
+        <div className="mb-7 max-w-3xl">
           <p className="section-kicker reveal-up">Student Success Stories</p>
           <h2 className="section-title reveal-up reveal-delay-1">
             Real alumni voices that reflect learning, support, and career growth at IGSB.
           </h2>
-          <p className="reveal-up reveal-delay-2 mt-6 text-lg leading-8 text-slate-600">
+          <p className="reveal-up reveal-delay-2 mt-5 text-lg leading-8 text-slate-600">
             These stories are drawn from real student experiences and highlight how academic guidance, industry exposure, and placement support shape outcomes at IGSB.
           </p>
         </div>

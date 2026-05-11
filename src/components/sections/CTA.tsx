@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import { ArrowRight, CheckCircle2, ChevronDown, Download, Mail, PencilLine, Phone } from 'lucide-react'
 import { Button } from '@components/ui/Button'
 import { CONTACT_INFO, PROGRAMME_DETAILS, SITE_CONFIG } from '@lib/constants'
@@ -22,6 +22,9 @@ const initialFormData: LeadFormData = {
 export default function CTA() {
   const [formData, setFormData] = useState<LeadFormData>(initialFormData)
   const [isPrepared, setIsPrepared] = useState(false)
+  const [isSpecializationOpen, setIsSpecializationOpen] = useState(false)
+  const [specializationError, setSpecializationError] = useState(false)
+  const specializationRef = useRef<HTMLDivElement | null>(null)
 
   const enquiryMailto = `${CONTACT_INFO.admissions.emailHref}?subject=${encodeURIComponent(
     `IGSB MBA enquiry from ${formData.name || 'prospective student'}`
@@ -42,14 +45,47 @@ export default function CTA() {
         setIsPrepared(false)
       }
 
+      if (field === 'specialization' && specializationError) {
+        setSpecializationError(false)
+      }
+
       setFormData((current) => ({
         ...current,
         [field]: event.target.value,
       }))
     }
 
+  useEffect(() => {
+    const handlePointerDown = (event: MouseEvent) => {
+      if (!specializationRef.current?.contains(event.target as Node)) {
+        setIsSpecializationOpen(false)
+      }
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsSpecializationOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handlePointerDown)
+    document.addEventListener('keydown', handleEscape)
+
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown)
+      document.removeEventListener('keydown', handleEscape)
+    }
+  }, [])
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    if (!formData.specialization) {
+      setSpecializationError(true)
+      setIsSpecializationOpen(true)
+      return
+    }
+
     setIsPrepared(true)
   }
 
@@ -58,7 +94,7 @@ export default function CTA() {
       <div className="container-custom">
         <div className="reveal-up editorial-shell dark-mesh overflow-hidden text-white shadow-[0_40px_120px_-60px_rgba(15,23,42,0.8)]">
           <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="relative overflow-hidden p-8 md:p-12">
+            <div className="relative overflow-hidden p-6 md:p-8">
               <div className="orb-glow absolute left-0 top-0 h-48 w-48 rounded-full bg-teal-400/18 blur-3xl" />
               <div className="orb-glow absolute bottom-0 right-0 h-56 w-56 rounded-full bg-blue-500/18 blur-3xl" />
               <div className="relative">
@@ -69,7 +105,7 @@ export default function CTA() {
                   Take the next step toward building a successful management career with a placement-oriented MBA from IGSB, Pune.
                 </h2>
 
-                <div className="mt-10 grid gap-4">
+                <div className="mt-7 grid gap-4">
                   <a
                     href={CONTACT_INFO.admissions.phoneHref}
                     className="spotlight-card hover-panel flex items-center gap-4 rounded-[24px] border border-white/10 bg-white/5 p-5 transition hover:bg-white/10"
@@ -97,7 +133,7 @@ export default function CTA() {
                   </a>
                 </div>
 
-                <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                   <Button href="#enquiry-form" size="lg">
                     Apply Now
                     <ArrowRight className="h-5 w-5" />
@@ -109,7 +145,7 @@ export default function CTA() {
               </div>
             </div>
 
-            <div id="enquiry-form" className="mesh-surface p-8 text-slate-900 md:p-12">
+            <div id="enquiry-form" className="mesh-surface p-6 text-slate-900 md:p-8">
               <p className="grid-label">Programme enquiry</p>
               <h3 className="mt-3 text-3xl font-semibold tracking-tight">
                 Prepare your enquiry and connect with admissions quickly.
@@ -119,7 +155,7 @@ export default function CTA() {
                 this device until you decide to call or email.
               </p>
 
-              <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+              <form className="mt-6 space-y-5" onSubmit={handleSubmit}>
                 <div className="grid gap-5 md:grid-cols-2">
                   <label className="block text-sm font-medium text-slate-700">
                     Full name
@@ -166,12 +202,84 @@ export default function CTA() {
 
                 <label className="block text-sm font-medium text-slate-700">
                   Preferred specialization
-                  <div className="relative mt-2">
+                  <div ref={specializationRef} className="relative mt-2">
+                    <button
+                      type="button"
+                      className={`w-full rounded-2xl border px-4 py-3 pr-12 text-left outline-none transition ${
+                        specializationError
+                          ? 'border-red-300 bg-red-50/70'
+                          : 'border-slate-200 bg-white/88'
+                      } focus:border-primary-300 focus:bg-white focus:shadow-[0_0_0_4px_rgba(20,184,166,0.08)]`}
+                      onClick={() => setIsSpecializationOpen((current) => !current)}
+                      aria-haspopup="listbox"
+                      aria-expanded={isSpecializationOpen}
+                      suppressHydrationWarning
+                    >
+                      <span className={formData.specialization ? 'text-slate-700' : 'text-slate-500'}>
+                        {formData.specialization || 'Select a specialization'}
+                      </span>
+                    </button>
+                    <ChevronDown
+                      className={`pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500 transition-transform ${
+                        isSpecializationOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                    {isSpecializationOpen ? (
+                      <div className="absolute bottom-[calc(100%+0.5rem)] left-0 right-0 z-30 overflow-hidden rounded-[24px] border border-slate-200 bg-white p-2 shadow-[0_22px_60px_-30px_rgba(15,23,42,0.35)]">
+                        <div className="mb-1 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary-700">
+                          Choose Specialization
+                        </div>
+                        <div className="grid max-h-64 gap-1 overflow-y-auto">
+                          <button
+                            type="button"
+                            className={`rounded-[18px] px-3 py-3 text-left text-sm font-medium transition ${
+                              !formData.specialization
+                                ? 'bg-primary-50 text-primary-700'
+                                : 'text-slate-500 hover:bg-slate-50'
+                            }`}
+                            onClick={() => {
+                              setFormData((current) => ({
+                                ...current,
+                                specialization: '',
+                              }))
+                              setSpecializationError(false)
+                              setIsPrepared(false)
+                              setIsSpecializationOpen(false)
+                            }}
+                          >
+                            Select a specialization
+                          </button>
+                          {PROGRAMME_DETAILS.specializations.map((specialization) => (
+                            <button
+                              key={specialization}
+                              type="button"
+                              className={`rounded-[18px] px-3 py-3 text-left text-sm font-medium transition ${
+                                formData.specialization === specialization
+                                  ? 'bg-primary-50 text-primary-700'
+                                  : 'text-slate-700 hover:bg-slate-50'
+                              }`}
+                              onClick={() => {
+                                setFormData((current) => ({
+                                  ...current,
+                                  specialization,
+                                }))
+                                setSpecializationError(false)
+                                setIsPrepared(false)
+                                setIsSpecializationOpen(false)
+                              }}
+                            >
+                              {specialization}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
                     <select
-                      className="w-full appearance-none rounded-2xl border border-slate-200 bg-white/88 px-4 py-3 pr-12 text-slate-700 outline-none transition focus:border-primary-300 focus:bg-white focus:shadow-[0_0_0_4px_rgba(20,184,166,0.08)]"
+                      className="pointer-events-none absolute inset-0 opacity-0"
                       value={formData.specialization}
                       onChange={handleChange('specialization')}
-                      required
+                      tabIndex={-1}
+                      aria-hidden="true"
                       suppressHydrationWarning
                     >
                       <option value="">Select a specialization</option>
@@ -181,8 +289,12 @@ export default function CTA() {
                         </option>
                       ))}
                     </select>
-                    <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500" />
                   </div>
+                  {specializationError ? (
+                    <p className="mt-2 text-sm font-medium text-red-600">
+                      Please select a specialization.
+                    </p>
+                  ) : null}
                 </label>
 
                 <Button type="submit" size="lg" className="w-full">

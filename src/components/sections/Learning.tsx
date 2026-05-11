@@ -8,8 +8,8 @@ export default function Learning() {
   return (
     <section className="section-shell">
       <div className="container-custom">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
-          <div className="reveal-up editorial-shell dark-mesh p-6 text-white md:p-8">
+        <div className="grid gap-7 lg:grid-cols-[1fr_1fr] lg:gap-7">
+          <div className="reveal-up editorial-shell dark-mesh p-6 text-white md:p-6">
             <p className="section-kicker !border-white/10 !bg-white/10 !text-teal-200">
               Learning Beyond Classrooms
             </p>
@@ -17,7 +17,7 @@ export default function Learning() {
               Our learning approach prepares students for real business challenges and professional responsibilities.
             </h2>
 
-            <div className="mt-8 grid gap-4">
+            <div className="mt-6 grid gap-4">
               {LEARNING_EXPERIENCES.map((experience, index) => {
                 const Icon = icons[index % icons.length]
 
@@ -36,37 +36,37 @@ export default function Learning() {
             </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="reveal-up reveal-delay-1 spotlight-card hover-panel editorial-shell mesh-surface overflow-hidden p-3 md:col-span-2">
+          <div className="grid gap-5">
+            <div className="reveal-up reveal-delay-1 spotlight-card hover-panel editorial-shell mesh-surface overflow-hidden p-3">
               <div className="relative overflow-hidden rounded-[26px]">
                 <Image
-                  src={CAMPUS_IMAGES.studentPortrait}
-                  alt="IGSB student portrait"
+                  src={CAMPUS_IMAGES.labStudents}
+                  alt="IGSB students in a lab setting"
                   width={1400}
                   height={900}
-                  className="h-[260px] w-full scale-[1.08] object-cover object-[center_14%] md:h-[320px]"
+                  className="h-[230px] w-full object-cover object-center md:h-[260px]"
                 />
               </div>
             </div>
             <div className="reveal-up reveal-delay-2 spotlight-card hover-panel editorial-shell overflow-hidden p-3">
               <div className="relative overflow-hidden rounded-[26px] bg-primary-50">
                 <Image
-                  src={CAMPUS_IMAGES.maleStudent}
-                  alt="IGSB student with laptop"
+                  src={CAMPUS_IMAGES.groupStudents}
+                  alt="IGSB students in a group learning setting"
                   width={900}
                   height={1300}
-                  className="h-[260px] w-full object-cover object-top md:h-[320px]"
+                  className="h-[230px] w-full object-cover object-center md:h-[260px]"
                 />
               </div>
             </div>
-            <div className="reveal-up reveal-delay-3 spotlight-card hover-panel editorial-shell dark-mesh flex flex-col justify-between p-6 text-white">
+            <div className="reveal-up reveal-delay-3 spotlight-card hover-panel editorial-shell dark-mesh flex flex-col justify-between p-5 text-white sm:p-6">
               <div>
                 <p className="grid-label !text-teal-100">Learning outcome</p>
                 <p className="mt-3 text-3xl font-semibold tracking-tight">
                   Students build stronger business judgment, communication, and readiness for modern corporate roles.
                 </p>
               </div>
-              <p className="mt-8 text-white/80">
+              <p className="mt-5 text-white/80">
                 Business case studies, expert sessions, project work, and mentoring keep the MBA connected to real-world expectations.
               </p>
             </div>

@@ -4,7 +4,7 @@ export default function Legacy() {
   return (
     <section className="section-shell pt-0">
       <div className="container-custom">
-        <div className="reveal-up editorial-shell mesh-surface p-8 md:p-10">
+        <div className="reveal-up editorial-shell mesh-surface p-6 md:p-8">
           <div className="max-w-4xl">
             <p className="section-kicker">A Legacy of Academic Excellence</p>
             <h2 className="section-title">
@@ -12,7 +12,7 @@ export default function Legacy() {
             </h2>
           </div>
 
-          <div className="mt-8 grid gap-5 lg:grid-cols-2">
+          <div className="mt-6 grid gap-5 lg:grid-cols-2">
             {CAMPUS_HIGHLIGHTS.map((highlight, index) => (
               <div
                 key={highlight.title}

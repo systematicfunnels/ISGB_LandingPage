@@ -6,10 +6,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer id="contact" className="border-t border-slate-200 bg-slate-950 py-14 text-white">
+    <footer id="contact" className="border-t border-slate-200 bg-slate-950 py-10 text-white">
       <div className="container-custom">
-        <div className="editorial-shell dark-mesh border-white/10 p-8 md:p-10">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr_0.85fr_0.85fr]">
+        <div className="editorial-shell dark-mesh border-white/10 p-7 md:p-9">
+          <div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-[1.05fr_0.95fr_0.85fr_0.85fr]">
             <div className="reveal-up">
               <div className="mb-5 flex items-center">
                 <Image
@@ -83,7 +83,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="mt-10 border-t border-white/10 pt-6 text-sm text-slate-500">
+          <div className="mt-7 border-t border-white/10 pt-5 text-sm text-slate-500">
             <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
               <p>AICTE Approved | Affiliated to SPPU, Pune | DTE Code - 06976</p>
               <p>&copy; {currentYear} Indira Global School of Business. All rights reserved.</p>

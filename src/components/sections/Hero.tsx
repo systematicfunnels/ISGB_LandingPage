@@ -1,3 +1,6 @@
+ 'use client'
+
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import {
   ArrowRight,
@@ -11,7 +14,6 @@ import {
   CONTACT_INFO,
   HERO_BADGES,
   HERO_COPY,
-  HERO_STATS,
   SITE_CONFIG,
 } from '@lib/constants'
 
@@ -23,9 +25,69 @@ const HERO_APPROVAL_BADGES = [
   ...APPROVAL_LOGOS.filter((logo) => logo.name !== 'IGSB'),
 ] as const
 
+function getApprovalLogoClass(name: string) {
+  switch (name) {
+    case 'Indira':
+      return 'h-14 sm:h-16 md:h-[70px]'
+    case 'AICTE':
+      return 'h-14 sm:h-16 md:h-[72px]'
+    case 'SPPU':
+      return 'h-11 sm:h-12 md:h-[54px]'
+    default:
+      return 'h-14 sm:h-16 md:h-[68px]'
+  }
+}
+
+type AnimatedStatProps = {
+  end: number
+  decimals?: number
+  prefix?: string
+  suffix?: string
+  duration?: number
+}
+
+function AnimatedStat({
+  end,
+  decimals = 0,
+  prefix = '',
+  suffix = '',
+  duration = 1400,
+}: AnimatedStatProps) {
+  const [value, setValue] = useState(0)
+
+  useEffect(() => {
+    let frame = 0
+    const start = performance.now()
+
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      const nextValue = end * eased
+
+      setValue(progress >= 1 ? end : nextValue)
+
+      if (progress < 1) {
+        frame = window.requestAnimationFrame(tick)
+      }
+    }
+
+    frame = window.requestAnimationFrame(tick)
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [duration, end])
+
+  return (
+    <>
+      {prefix}
+      {value.toFixed(decimals)}
+      {suffix}
+    </>
+  )
+}
+
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 pb-20 pt-6 text-white md:pb-28 md:pt-8">
+    <section className="relative overflow-hidden bg-gradient-to-br from-secondary-700 via-slate-950 to-[#07111d] pb-[4.5rem] pt-6 text-white md:pb-24 md:pt-8">
       {/* Enhanced Background */}
       <div className="absolute inset-0">
         <Image
@@ -35,10 +97,10 @@ export default function Hero() {
           className="object-cover object-center opacity-10"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-transparent to-slate-950/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/55 via-transparent to-[#07111d]/90" />
         {/* Animated glow effects */}
         <div className="orb-glow absolute left-[5%] top-20 h-64 w-64 rounded-full bg-teal-500/15 blur-3xl animate-pulse" />
-        <div className="orb-glow absolute right-[8%] bottom-20 h-72 w-72 rounded-full bg-blue-500/15 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="orb-glow absolute right-[8%] bottom-20 h-72 w-72 rounded-full bg-accent-500/12 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         <div className="orb-glow absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-primary-500/10 blur-3xl" />
       </div>
 
@@ -64,7 +126,7 @@ export default function Hero() {
         </div>
 
         {/* Desktop Top Bar - Professional UX */}
-        <div className="reveal-up mb-8 hidden rounded-2xl border border-white/20 bg-gradient-to-r from-white/15 via-white/10 to-white/15 backdrop-blur-md shadow-2xl md:flex md:items-center md:justify-between md:px-6 md:py-4">
+        <div className="reveal-up mb-7 hidden rounded-2xl border border-white/15 bg-gradient-to-r from-white/12 via-primary-900/20 to-accent-500/8 backdrop-blur-md shadow-2xl md:flex md:items-center md:justify-between md:px-6 md:py-4">
           {/* Left side - Key messages */}
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {/* Logo + Brand */}
@@ -118,7 +180,7 @@ export default function Hero() {
         </div>
 
         {/* Main Content Grid - Improved Layout */}
-        <div className="grid items-start gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
+        <div className="grid items-start gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-10">
           {/* Left Column - Content */}
           <div className="max-w-2xl lg:pt-8">
             {/* Badges - Enhanced */}
@@ -138,7 +200,7 @@ export default function Hero() {
               {HERO_COPY.title}
             </h1>
 
-            <p className="reveal-up reveal-delay-2 mt-5 max-w-2xl text-xl text-teal-200 md:text-2xl">
+            <p className="reveal-up reveal-delay-2 mt-5 max-w-2xl text-xl text-teal-100 md:text-2xl">
               {HERO_COPY.subtitle}
             </p>
 
@@ -183,10 +245,10 @@ export default function Hero() {
 
             <div className="reveal-up reveal-delay-2 relative mx-auto max-w-[560px] lg:ml-auto">
               <div className="absolute -left-6 top-10 h-32 w-32 rounded-full bg-teal-400/18 blur-3xl" />
-              <div className="absolute -right-4 top-24 h-36 w-36 rounded-full bg-rose-300/18 blur-3xl" />
+              <div className="absolute -right-4 top-24 h-36 w-36 rounded-full bg-accent-500/14 blur-3xl" />
 
               <div className="relative overflow-hidden rounded-[36px] bg-white/[0.05] p-4 shadow-[0_30px_90px_rgba(15,23,42,0.34)] backdrop-blur-xl sm:p-6">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.14),transparent_30%),linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(245,158,11,0.08),transparent_24%),linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
 
                 <div className="relative z-10 flex flex-wrap items-center justify-between gap-3">
                   <div className="inline-flex items-center rounded-full border border-teal-300/20 bg-teal-400/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-teal-100">
@@ -198,14 +260,14 @@ export default function Hero() {
                 </div>
 
                 <div className="relative z-10 mt-5 min-h-[430px] sm:min-h-[520px]">
-                  <div className="absolute left-1/2 top-8 h-[260px] w-[260px] -translate-x-1/2 rounded-full bg-gradient-to-b from-rose-200/28 via-pink-200/16 to-transparent blur-3xl sm:h-[320px] sm:w-[320px]" />
+                  <div className="absolute left-1/2 top-8 h-[260px] w-[260px] -translate-x-1/2 rounded-full bg-gradient-to-b from-accent-500/16 via-white/8 to-transparent blur-3xl sm:h-[320px] sm:w-[320px]" />
 
                   <div className="absolute left-0 top-8 z-20 rounded-[24px] border border-white/12 bg-slate-950/65 px-4 py-3 shadow-[0_18px_40px_rgba(15,23,42,0.3)] backdrop-blur-md">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-300">
                       Highest Package
                     </p>
                     <p className="mt-2 text-3xl font-semibold tracking-tight text-white">
-                      {HERO_STATS[0].value}
+                      <AnimatedStat end={16.5} decimals={1} suffix=" LPA" />
                     </p>
                   </div>
 
@@ -214,19 +276,19 @@ export default function Hero() {
                       Recruiters
                     </p>
                     <p className="mt-2 text-3xl font-semibold tracking-tight text-white">
-                      {HERO_STATS[2].value}
+                      <AnimatedStat end={650} suffix="+" />
                     </p>
                   </div>
 
-                  <div className="absolute inset-x-8 bottom-0 top-12 overflow-hidden rounded-[32px] border border-white/14 bg-gradient-to-br from-white/92 via-rose-100 to-pink-100 shadow-[0_28px_90px_rgba(15,23,42,0.24)] sm:inset-x-12 sm:top-10">
+                  <div className="absolute inset-x-8 bottom-0 top-12 overflow-hidden rounded-[32px] border border-white/14 bg-gradient-to-br from-white/96 via-[#f3efe5] to-[#dcedea] shadow-[0_28px_90px_rgba(15,23,42,0.24)] sm:inset-x-12 sm:top-10">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.35),transparent_34%)]" />
-                    <div className="absolute inset-x-[8%] top-[8%] bottom-[8%] rounded-[28px] border border-white/55" />
+                    <div className="absolute inset-x-[8%] top-[8%] bottom-[8%] rounded-[28px] border border-white/60" />
                     <div className="absolute right-5 top-5 z-20 rounded-[22px] border border-slate-200/80 bg-white/96 px-4 py-3 shadow-[0_18px_40px_rgba(15,23,42,0.22)] backdrop-blur-md sm:right-7 sm:top-7">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary-700">
                         Average Package
                       </p>
                       <p className="mt-1 text-2xl font-semibold tracking-tight text-slate-950 sm:text-[2rem]">
-                        {HERO_STATS[1].value}
+                        <AnimatedStat end={7.75} decimals={2} suffix=" LPA" />
                       </p>
                     </div>
                     <Image
@@ -236,7 +298,7 @@ export default function Hero() {
                       className="translate-y-6 scale-[1.08] object-contain object-bottom sm:translate-y-8 sm:scale-[1.1]"
                       priority
                     />
-                    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-rose-100 via-rose-100/92 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#e7f2ef] via-[#e7f2ef]/92 to-transparent" />
                   </div>
 
                   <div className="absolute inset-x-[22%] bottom-2 h-10 rounded-full bg-slate-950/18 blur-2xl" />
@@ -247,18 +309,18 @@ export default function Hero() {
                     <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-300">
                       Approvals & Affiliations
                     </p>
-                    <div className="mt-4 grid grid-cols-3 items-center gap-3 md:flex md:items-center md:justify-start md:gap-5">
+                    <div className="mt-4 grid grid-cols-3 items-center gap-4 md:gap-8">
                       {HERO_APPROVAL_BADGES.map((logo) => (
                         <div
                           key={logo.name}
-                          className="flex min-h-[80px] w-full items-center justify-center sm:min-h-[92px] md:min-h-[96px] md:w-[92px]"
+                          className="flex min-h-[80px] w-full items-center justify-center sm:min-h-[92px] md:min-h-[96px]"
                         >
                           <Image
                             src={logo.src}
                             alt={logo.name}
                             width={96}
                             height={96}
-                            className="h-14 w-auto max-w-full object-contain sm:h-16 md:h-[72px]"
+                            className={`${getApprovalLogoClass(logo.name)} w-auto max-w-full object-contain`}
                           />
                         </div>
                       ))}

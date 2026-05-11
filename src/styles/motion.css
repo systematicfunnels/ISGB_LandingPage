@@ -353,6 +353,15 @@
   object-fit: contain;
 }
 
+@media (min-width: 769px) and (max-width: 1279px) {
+  .company-logo-item {
+    width: 140px;
+    height: 72px;
+    margin: 0 14px;
+    padding: 14px;
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .company-logo-item {

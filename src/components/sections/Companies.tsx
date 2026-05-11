@@ -11,10 +11,10 @@ export default function Companies() {
   const secondRowDuplicated = [...secondRowLogos, ...secondRowLogos]
 
   return (
-    <section id="recruiters" className="py-10">
+    <section id="recruiters" className="py-10 md:py-12">
       <div className="container-custom">
-        <div className="reveal-up editorial-shell dark-mesh overflow-hidden border-white/10 px-6 py-8 text-white md:px-8">
-          <div className="mb-8 max-w-3xl">
+        <div className="reveal-up editorial-shell dark-mesh overflow-hidden border-white/10 px-5 py-6 text-white sm:px-6 md:px-8 md:py-7">
+          <div className="mb-6 max-w-3xl">
             <p className="section-kicker !border-white/10 !bg-white/10 !text-teal-200">
               Trusted by Industry, Defined by Outcomes
             </p>
@@ -28,7 +28,7 @@ export default function Companies() {
           </div>
 
           {/* First Row - Moving Left */}
-          <div className="company-marquee mb-6">
+          <div className="company-marquee mb-5">
             <div className="company-marquee-row">
               {firstRowDuplicated.map((logo, index) => (
                 <div key={`${logo.name}-first-${index}`} className="company-logo-item">

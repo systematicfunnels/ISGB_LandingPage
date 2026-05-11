@@ -7,18 +7,18 @@ export default function Placements() {
     <section id="placements" className="section-shell">
       <div className="container-custom">
         <div className="reveal-up editorial-shell dark-mesh overflow-hidden p-6 text-white md:p-8">
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
             <div>
               <p className="section-kicker !border-white/10 !bg-white/10 !text-teal-200">
                 Placement-Driven MBA
               </p>
               <h2 className="section-title text-white">Strong Placement Performance</h2>
-              <p className="mt-6 text-lg leading-8 text-slate-300">
+              <p className="mt-5 text-lg leading-8 text-slate-300">
                 At IGSB, placements are supported through structured training, industry engagement,
                 and continuous career development.
               </p>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                 {HERO_STATS.map((stat, index) => (
                   <div
                     key={stat.label}
@@ -34,19 +34,24 @@ export default function Placements() {
                 <p className="text-xl font-semibold text-white">100% Placement Assistance</p>
               </div>
 
-              <div className="reveal-up reveal-delay-4 mt-8 flex flex-col gap-4 sm:flex-row">
-                <Button href="#apply">
+              <div className="reveal-up reveal-delay-4 mt-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+                <Button href="#apply" className="w-full justify-between sm:w-auto sm:justify-center">
                   Apply Now
                   <ArrowRight className="h-5 w-5" />
                 </Button>
-                <Button href={SITE_CONFIG.brochurePath} download variant="secondary">
+                <Button
+                  href={SITE_CONFIG.brochurePath}
+                  download
+                  variant="secondary"
+                  className="w-full justify-between sm:w-auto sm:justify-center"
+                >
                   Download Brochure
                 </Button>
               </div>
             </div>
 
-            <div className="space-y-5">
-              <div className="reveal-up reveal-delay-2 spotlight-card hover-panel rounded-[28px] bg-white p-6 text-slate-900">
+            <div className="space-y-3">
+              <div className="reveal-up reveal-delay-2 spotlight-card hover-panel rounded-[28px] bg-white p-5 text-slate-900 sm:p-6">
                 <p className="grid-label">Placement Support Includes</p>
                 <div className="mt-5 grid gap-3">
                   {PLACEMENT_SUPPORT.map((item) => (
@@ -58,7 +63,7 @@ export default function Placements() {
                 </div>
               </div>
 
-              <div className="reveal-up reveal-delay-3 spotlight-card hover-panel rounded-[28px] border border-white/10 bg-white/5 p-6">
+              <div className="reveal-up reveal-delay-3 spotlight-card hover-panel rounded-[28px] border border-white/10 bg-white/5 p-5 sm:p-6">
                 <p className="grid-label !text-teal-200">Top Career Roles</p>
                 <div className="mt-5 flex flex-wrap gap-3">
                   {TOP_CAREER_ROLES.map((role) => (
