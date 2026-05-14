@@ -2,10 +2,11 @@
 
 import { MouseEvent, ReactNode, useState } from 'react'
 import clsx from 'clsx'
+import { ArrowUpRight } from 'lucide-react'
 
 interface ButtonProps {
   children: ReactNode
-  variant?: 'primary' | 'secondary' | 'outline'
+  variant?: 'primary' | 'secondary' | 'outline' | 'cta'
   size?: 'sm' | 'md' | 'lg'
   onClick?: () => void
   className?: string
@@ -14,6 +15,8 @@ interface ButtonProps {
   disabled?: boolean
   type?: 'button' | 'submit' | 'reset'
   loading?: boolean
+  showIcon?: boolean
+  suppressHydrationWarning?: boolean
 }
 
 export function Button({
@@ -26,13 +29,15 @@ export function Button({
   onClick,
   href,
   download,
+  showIcon = false,
+  type = 'button',
   ...props
 }: ButtonProps) {
   const [isActive, setIsActive] = useState(false)
   const [ripples, setRipples] = useState<Array<{ id: number; x: number; y: number }>>([])
 
   const baseStyles =
-    'font-semibold rounded-full transition-all duration-300 inline-flex items-center justify-center relative overflow-hidden gap-2'
+    'relative inline-flex min-h-[44px] touch-manipulation items-center justify-center gap-2 overflow-hidden rounded-full font-semibold transition-all duration-300'
 
   const variants = {
     primary:
@@ -41,12 +46,14 @@ export function Button({
       'bg-white/10 text-white border border-white/25 backdrop-blur hover:-translate-y-0.5 hover:bg-white/20',
     outline:
       'bg-white text-primary-700 border border-primary-200 hover:-translate-y-0.5 hover:border-primary-300 hover:bg-primary-50',
+    cta:
+      'bg-white text-[#153d62] shadow-2xl transition-all hover:-translate-y-1 active:scale-95 px-8 py-3.5 group font-bold',
   }
 
   const sizes = {
-    sm: 'px-4 py-2.5 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-7 py-3.5 text-base md:px-8 md:text-lg',
+    sm: 'min-h-[44px] px-4 py-2.5 text-sm',
+    md: 'min-h-[48px] px-6 py-3 text-base',
+    lg: 'min-h-[52px] px-7 py-3.5 text-base md:px-8 md:text-lg',
   }
 
   const disabledStyles = disabled ? 'pointer-events-none opacity-50' : ''
@@ -81,56 +88,50 @@ export function Button({
   const buttonClass = clsx(
     baseStyles,
     variants[variant],
-    sizes[size],
+    variant !== 'cta' && sizes[size],
     disabledStyles,
     activeStyles,
     className
   )
 
-  const rippleMarkup = ripples.map((ripple) => (
-    <span
-      key={ripple.id}
-      className="absolute rounded-full bg-white/30 animate-ping"
-      style={{
-        left: ripple.x - 10,
-        top: ripple.y - 10,
-        width: 20,
-        height: 20,
-      }}
-    />
-  ))
-
-  const content = loading ? (
-    <svg
-      className="h-5 w-5 animate-spin"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-      />
-    </svg>
-  ) : (
-    children
+  const content = (
+    <>
+      {children}
+      {(variant === 'cta' || showIcon) && (
+        <div className={clsx(
+          "flex items-center justify-center rounded-full transition-transform",
+          variant === 'cta' ? "h-10 w-10 bg-[#153d62] text-white group-hover:rotate-45 ml-4" : "ml-2"
+        )}>
+          <ArrowUpRight className={variant === 'cta' ? "h-6 w-6" : "h-4 w-4"} />
+        </div>
+      )}
+      {ripples.map((ripple) => (
+        <span
+          key={ripple.id}
+          className="absolute rounded-full bg-white/30 animate-ping"
+          style={{
+            left: ripple.x - 10,
+            top: ripple.y - 10,
+            width: 20,
+            height: 20,
+          }}
+        />
+      ))}
+    </>
   )
 
   if (href) {
     return (
       <a
         href={href}
-        download={download}
         className={buttonClass}
-        suppressHydrationWarning
+        onClick={handlePress}
         onMouseDown={() => !disabled && setIsActive(true)}
         onMouseUp={() => setIsActive(false)}
         onMouseLeave={() => setIsActive(false)}
-        onClick={handlePress}
+        download={download}
+        {...props}
       >
-        {rippleMarkup}
         {content}
       </a>
     )
@@ -138,17 +139,41 @@ export function Button({
 
   return (
     <button
-      {...props}
+      type={type}
       className={buttonClass}
-      suppressHydrationWarning
+      onClick={handlePress}
       onMouseDown={() => !disabled && setIsActive(true)}
       onMouseUp={() => setIsActive(false)}
       onMouseLeave={() => setIsActive(false)}
-      onClick={handlePress}
       disabled={disabled || loading}
+      {...props}
     >
-      {rippleMarkup}
-      {content}
+      {loading ? (
+        <span className="flex items-center gap-2">
+          <svg
+            className="h-4 w-4 animate-spin text-current"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            />
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            />
+          </svg>
+          Loading...
+        </span>
+      ) : (
+        content
+      )}
     </button>
   )
 }

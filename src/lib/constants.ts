@@ -36,33 +36,39 @@ export const CONTACT_INFO = {
     emailHref: 'mailto:admin@indiraigsb.edu.in',
   },
   examCommittee: {
-    email: 'exam.committee@indiragsb.edu.in',
-    emailHref: 'mailto:exam.committee@indiragsb.edu.in',
+    email: 'exam.committee@indiraigsb.edu.in',
+    emailHref: 'mailto:exam.committee@indiraigsb.edu.in',
   },
 }
 
 export const HERO_COPY = {
   title: 'Accelerate Your Career. Maximize Your Potential.',
   subtitle: 'Build a Strong Foundation for Business Leadership',
-  society: "Shree Chanakya Education Society's",
+  society: "Shree Chanakya Education Society’s",
   campus: 'Indira Global School of Business, Pune',
   motto: 'Empowering Minds to Elevate Lives',
-  approvals: 'AICTE Approved | Affiliated to SPPU, Pune | DTE Code - 06976',
+  approvals: 'AICTE Approved | Affiliated to SPPU, Pune DTE Code – 06976',
   intro:
     'At Indira Global School of Business, Pune, we prepare MBA professionals for successful careers through industry-oriented learning, strategic thinking, and strong placement opportunities.',
-  formLine: 'Prepare your enquiry, download the brochure, or connect with admissions.',
+  ctaButtons: [
+    { label: 'Apply Now', href: '#apply' },
+    { label: 'Download Brochure', href: '/igsb-brochure.pdf' },
+    { label: 'Speak to an Admission Counselor', href: 'tel:+919657856103' },
+  ],
+  formLine: 'Fill the form to receive programme details instantly',
 }
 
 export const HERO_STATS = [
   { value: '16.5 LPA', label: 'Highest Package' },
   { value: '7.75 LPA', label: 'Average Package' },
   { value: '650+', label: 'Recruiting Partners' },
+  { value: '100%', label: 'Placement Assistance' },
 ]
 
 export const HERO_BADGES = [
   'AICTE Approved',
   'Affiliated to SPPU, Pune',
-  'DTE Code - 06976',
+  'DTE Code – 06976',
 ]
 
 export const PROGRAMME_DETAILS = {
@@ -118,7 +124,7 @@ export const RECRUITER_GROUPS = [
     'Mastercard',
     'NielsenIQ',
     'Mondelez International',
-    'Nestle',
+    'Nestlé',
     'KPMG',
     'Mercedes-Benz',
     'KPIT',
@@ -129,7 +135,7 @@ export const RECRUITER_GROUPS = [
     'Federal Bank',
     'BlackRock',
     'UBS',
-    'Fincart',
+    'FINQAT',
     'FIS',
     'IDFC First Bank',
     'Oriental Insurance',
@@ -173,14 +179,14 @@ export const TOP_CAREER_ROLES = [
 
 export const CAMPUS_HIGHLIGHTS = [
   {
-    title: '30+ Years of Quality Education',
+    title: 'Your MBA Journey Towards Career Success Starts Here',
     description:
-      'Backed by Shree Chanakya Education Society, IGSB draws on more than three decades of academic development, innovation, and industry-oriented learning.',
+      'An MBA at IGSB is designed for students seeking professional growth, leadership opportunities, and long-term success in the corporate world.',
   },
   {
-    title: 'Students benefit from focused development',
+    title: 'A Legacy of Academic Excellence',
     description:
-      'Students benefit from an environment focused on academic excellence, industry exposure, and holistic development.',
+      'Backed by Shree Chanakya Education Society, IGSB continues a legacy of 30+ years in quality education, innovation, and industry-oriented academic excellence. Students benefit from an environment focused on academic excellence, industry exposure, and holistic development.',
   },
 ]
 
@@ -406,17 +412,92 @@ export const TESTIMONIALS = [
 ]
 
 export const CAMPUS_IMAGES = {
-  campusHeroBackdrop: campusAsset('campus-hero-background.png'),
   campusFacade: campusAsset('igsb-campus-facade.png'),
-  mbaStudentCutout: campusAsset('mba-student-cutout.png'),
+  campusHeroBg: campusAsset('campus-hero-background.png'),
+  boyStudentCutout: campusAsset('boy-student-cutout.png'),
   maleStudentCutout: campusAsset('male-student-cutout.png'),
-  studentPortraitFormal: campusAsset('female-student-portrait.png'),
-  labSessionGroup: campusAsset('mba-lab-session-group.jpg'),
-  studentGroupPortrait: campusAsset('mba-student-group-portrait.jpg'),
+  femaleStudentPortrait: campusAsset('female-student-portrait.png'),
+  mbaStudentCutout: campusAsset('mba-student-cutout.png'),
+  laptopCollaborationSession: campusAsset('laptop-collaboration-session.jpg'),
   libraryResearchScene: campusAsset('library-research-scene.jpg'),
   computerLabSession: campusAsset('computer-lab-session.jpg'),
   hallwayTeamWalk: campusAsset('hallway-team-walk.jpg'),
+  labSessionGroup: campusAsset('mba-lab-session-group.jpg'),
   outdoorLeadershipDiscussion: campusAsset('outdoor-leadership-discussion.jpg'),
-  laptopCollaborationSession: campusAsset('laptop-collaboration-session.jpg'),
   placementReadyGroup: campusAsset('placement-ready-group.jpg'),
+  groupPortrait: campusAsset('mba-student-group-portrait.jpg'),
 }
+
+export const PROGRAMME_CARDS = [
+  {
+    title: PROGRAMME_DETAILS.specializations[0],
+    description:
+      'Build expertise in brand strategy, growth marketing, market research, and digital communication.',
+    tag: 'Full Time',
+    duration: '2 Years',
+    credits: '16 Credits',
+    image: CAMPUS_IMAGES.laptopCollaborationSession,
+  },
+  {
+    title: PROGRAMME_DETAILS.specializations[1],
+    description:
+      'Develop fluency in corporate finance, analytics, investment thinking, and financial decision-making.',
+    tag: 'Research',
+    duration: '2 Years',
+    credits: '16 Credits',
+    image: CAMPUS_IMAGES.libraryResearchScene,
+  },
+  {
+    title: PROGRAMME_DETAILS.specializations[2],
+    description:
+      'Learn talent acquisition, people strategy, HR analytics, performance systems, and culture building.',
+    tag: 'Full Time',
+    duration: '2 Years',
+    credits: '16 Credits',
+    image: CAMPUS_IMAGES.computerLabSession,
+    highlight: true,
+  },
+  {
+    title: PROGRAMME_DETAILS.specializations[3],
+    description:
+      'Prepare for supply chains, process planning, logistics coordination, and operational excellence.',
+    tag: 'Part Time',
+    duration: '2 Years',
+    credits: '16 Credits',
+    image: CAMPUS_IMAGES.labSessionGroup,
+  },
+]
+
+export const WHAT_SETS_YOU_APART_DATA = [
+  {
+    title: WHAT_SETS_YOU_APART[0],
+    description: 'Direct engagement with business ecosystems through live projects and industry interactions.',
+    image: CAMPUS_IMAGES.laptopCollaborationSession,
+    number: '02',
+  },
+  {
+    title: WHAT_SETS_YOU_APART[1],
+    description: 'Mastering the tools and frameworks that modern recruiters look for in MBA graduates.',
+    image: CAMPUS_IMAGES.computerLabSession,
+    number: '06',
+  },
+  {
+    title: WHAT_SETS_YOU_APART[2],
+    description: 'Developing the analytical mindset to solve complex business problems with clarity.',
+    image: CAMPUS_IMAGES.libraryResearchScene,
+    number: '10',
+    active: true,
+  },
+  {
+    title: WHAT_SETS_YOU_APART[3],
+    description: 'Nurturing the ability to lead teams, drive results, and influence organizational culture.',
+    image: CAMPUS_IMAGES.outdoorLeadershipDiscussion,
+    number: '15',
+  },
+  {
+    title: WHAT_SETS_YOU_APART[4],
+    description: 'Polishing professional presence and communication for high-impact corporate roles.',
+    image: CAMPUS_IMAGES.placementReadyGroup,
+    number: '18',
+  },
+]

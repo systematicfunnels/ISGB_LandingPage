@@ -1,16 +1,27 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Libre_Baskerville, Mulish } from 'next/font/google'
 import './globals.css'
 import { SITE_CONFIG } from '@lib/constants'
+import FloatingCTA from '@components/FloatingCTA'
 
-const inter = Inter({ subsets: ['latin'] })
+const mulish = Mulish({
+  subsets: ['latin'],
+  variable: '--font-body',
+  weight: ['400', '500', '600', '700', '800'],
+})
+
+const libreBaskerville = Libre_Baskerville({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: ['400', '700'],
+})
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: '#0f2d2c',
+  themeColor: '#1c4f80',
 }
 
 export const metadata: Metadata = {
@@ -73,7 +84,10 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={`${mulish.variable} ${libreBaskerville.variable} font-sans`}>
+        {children}
+        <FloatingCTA />
+      </body>
     </html>
   )
 }

@@ -1,73 +1,126 @@
-import Image from 'next/image'
-import { Quote } from 'lucide-react'
-import { TESTIMONIALS } from '@lib/constants'
+'use client';
+
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { Quote } from 'lucide-react';
+import { SwipeCarousel } from '@components/ui/SwipeCarousel';
+import { TESTIMONIALS } from '@lib/constants';
 
 export default function SuccessStories() {
   return (
-    <section className="section-shell">
+    <section className="w-full bg-[#fbf7ef] py-16 lg:py-24">
       <div className="container-custom">
-        <div className="mb-7 max-w-3xl">
-          <p className="section-kicker reveal-up">Student Success Stories</p>
-          <h2 className="section-title reveal-up reveal-delay-1">
-            Real alumni voices that reflect learning, support, and career growth at IGSB.
-          </h2>
-          <p className="reveal-up reveal-delay-2 mt-5 text-lg leading-8 text-slate-600">
-            These stories are drawn from real student experiences and highlight how academic guidance, industry exposure, and placement support shape outcomes at IGSB.
-          </p>
+        <div className="mb-12 text-center">
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-kicker"
+          >
+            Alumni Outcomes
+          </motion.p>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-[1] tracking-tight text-slate-950"
+          >
+            Student <span className="text-primary-700 italic">Success Stories</span>
+          </motion.h2>
         </div>
-
-        <div className="story-marquee reveal-up reveal-delay-3">
-          <div className="story-marquee-track pb-2">
-            {[false, true].map((isCopy) => (
-              <div
-                key={isCopy ? 'copy' : 'primary'}
-                aria-hidden={isCopy}
-                className={isCopy ? 'story-marquee-set story-marquee-copy' : 'story-marquee-set'}
-              >
-                {TESTIMONIALS.map((testimonial) => (
-                  <article
-                    key={`${testimonial.name}-${isCopy ? 'copy' : 'main'}`}
-                    className="story-card spotlight-card hover-panel editorial-shell mesh-surface h-full shrink-0 snap-start overflow-hidden p-2.5 sm:p-3"
+        <div className="mx-auto grid min-h-[520px] w-full grid-cols-1 overflow-hidden rounded-[3rem] bg-primary-700 text-white shadow-2xl lg:min-h-[620px] lg:grid-cols-2">
+          <div className="relative flex flex-col justify-center bg-primary-700">
+            <SwipeCarousel
+              className="h-full"
+              autoPlay
+              interval={7000}
+              showArrows={false}
+              showDots
+              infinite
+              dotContainerClassName="bottom-8 left-8 translate-x-0 gap-3 lg:bottom-12 lg:left-[70px]"
+              dotClassName="h-[4px] w-[30px] rounded-full bg-white/20 transition-all"
+              activeDotClassName="!h-[4px] !w-[45px] !bg-accent-500"
+            >
+              {TESTIMONIALS.map((story) => (
+                <div
+                  key={story.name}
+                  className="flex h-full min-w-0 flex-col px-8 py-12 pb-24 sm:px-12 md:px-16 lg:px-[70px] lg:py-[60px] lg:pb-[100px]"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-accent-500 backdrop-blur-sm lg:h-20 lg:w-20"
                   >
-                    <div className="relative overflow-hidden rounded-[24px]">
-                      <Image
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        width={900}
-                        height={1100}
-                        className={`h-[190px] w-full object-cover sm:h-[205px] md:h-[215px] lg:h-[225px] ${
-                          testimonial.name === 'Nikita Dalvi' ? 'object-[center_10%]' : 'object-[center_18%]'
-                        }`}
-                      />
-                    </div>
+                    <Quote className="h-8 w-8 fill-current lg:h-10 lg:w-10" />
+                  </motion.div>
 
-                    <div className="story-card-body p-3.5 sm:p-4">
-                      <div className="mb-3 inline-flex rounded-full bg-primary-50 p-2.5 text-primary-700 md:mb-4 md:p-3">
-                        <Quote className="h-4 w-4" />
+                  <h2 className="mt-8 font-display text-[24px] font-bold leading-[1.1] tracking-tight sm:text-[32px] lg:text-[42px] xl:text-[52px]">
+                    {story.quote}
+                  </h2>
+
+                  <div className="mt-10 border-t border-white/10 pt-8">
+                    <div className="flex items-center gap-6">
+                      <div className="relative h-16 w-16 overflow-hidden rounded-2xl border-2 border-white/20 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
+                        <Image
+                          src={story.image}
+                          alt={story.name}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
-                      <h3 className="text-lg font-semibold tracking-tight text-slate-950 md:text-xl">
-                        {testimonial.name}
-                      </h3>
-                      <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500 md:text-xs md:tracking-[0.18em]">
-                        {testimonial.batch}
-                      </p>
-                      <p className="story-card-quote mt-3 text-sm leading-6 text-slate-600 md:leading-6">
-                        &ldquo;{testimonial.quote}&rdquo;
-                      </p>
-                      <div className="story-card-highlight-wrap rounded-[20px] bg-white/85 p-3.5 shadow-sm">
-                        <p className="grid-label">Highlight</p>
-                        <p className="story-card-highlight mt-2 text-sm leading-6 text-slate-700">
-                          {testimonial.outcome}
+
+                      <div>
+                        <p className="text-lg font-bold lg:text-2xl">
+                          {story.name}
+                        </p>
+                        <p className="text-sm font-medium text-white/60 lg:text-base">
+                          Batch {story.batch}
                         </p>
                       </div>
                     </div>
-                  </article>
-                ))}
+                  </div>
+                </div>
+              ))}
+            </SwipeCarousel>
+          </div>
+
+          <div className="relative min-h-[400px] overflow-hidden lg:min-h-full bg-gradient-to-br from-primary-700 to-primary-800">
+            {/* Decorative background circles */}
+            <svg className="absolute inset-0 h-full w-full" aria-hidden="true">
+              <circle cx="20%" cy="15%" r="150" fill="rgba(255,255,255,0.05)" />
+              <circle cx="80%" cy="75%" r="200" fill="rgba(255,255,255,0.03)" />
+              <circle cx="90%" cy="20%" r="100" fill="rgba(255,255,255,0.04)" />
+              <circle cx="10%" cy="80%" r="120" fill="rgba(255,255,255,0.03)" />
+            </svg>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+            {/* Centered student cutout */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative h-[300px] w-[300px] sm:h-[350px] sm:w-[350px] lg:h-[450px] lg:w-[450px]">
+                <Image
+                  src="/Herobg.png"
+                  alt="Featured Student"
+                  fill
+                  className="object-contain drop-shadow-[0_30px_80px_rgba(0,0,0,0.4)]"
+                  priority
+                />
               </div>
-            ))}
+            </div>
+            
+            <div className="absolute bottom-8 left-8 text-left lg:bottom-12 lg:left-12">
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent-500">
+                Student Success Stories
+              </p>
+              <h3 className="mt-2 text-xl font-bold text-white">
+                Real Journeys. Real Results.
+              </h3>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
+

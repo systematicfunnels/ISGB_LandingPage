@@ -1,67 +1,67 @@
-import Image from 'next/image'
-import { RECRUITER_LOGOS } from '@lib/constants'
+'use client';
+
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { RECRUITER_LOGOS } from '@lib/constants';
 
 export default function Companies() {
-  // Split logos into two rows for opposite direction animation
-  const firstRowLogos = RECRUITER_LOGOS.slice(0, Math.ceil(RECRUITER_LOGOS.length / 2))
-  const secondRowLogos = RECRUITER_LOGOS.slice(Math.ceil(RECRUITER_LOGOS.length / 2))
-
   // Duplicate logos for seamless loop
-  const firstRowDuplicated = [...firstRowLogos, ...firstRowLogos]
-  const secondRowDuplicated = [...secondRowLogos, ...secondRowLogos]
+  const duplicatedLogos = [...RECRUITER_LOGOS, ...RECRUITER_LOGOS];
 
   return (
-    <section id="recruiters" className="py-10 md:py-12">
+    <section className="py-16 md:py-24">
       <div className="container-custom">
-        <div className="reveal-up editorial-shell dark-mesh overflow-hidden border-white/10 px-5 py-6 text-white sm:px-6 md:px-8 md:py-7">
-          <div className="mb-6 max-w-3xl">
-            <p className="section-kicker !border-white/10 !bg-white/10 !text-teal-200">
-              Trusted by Industry, Defined by Outcomes
-            </p>
-            <h2 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
-              Recruiter network across finance, consulting, technology, and industry.
-            </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">
-              Featured recruiters shown here are part of a wider network of 650+ hiring partners across consulting,
-              banking, FMCG, automotive, insurance, and technology.
-            </p>
-          </div>
-
-          {/* First Row - Moving Left */}
-          <div className="company-marquee mb-5">
-            <div className="company-marquee-row">
-              {firstRowDuplicated.map((logo, index) => (
-                <div key={`${logo.name}-first-${index}`} className="company-logo-item">
-                  <Image 
-                    src={logo.src} 
-                    alt={logo.name} 
-                    width={120}
-                    height={60}
-                    className="object-contain"
-                  />
-                </div>
-              ))}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="rounded-[3rem] border border-white/60 bg-white px-6 py-10 shadow-2xl shadow-slate-200/50 backdrop-blur-sm sm:px-10 md:py-14"
+        >
+          <div className="mb-12 flex flex-col gap-4 items-center text-center">
+            <div className="max-w-3xl">
+              <p className="inline-flex rounded-full bg-primary-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-primary-700">
+                OUR GRADUATES WORK AT
+              </p>
             </div>
           </div>
 
-          {/* Second Row - Moving Right */}
-          <div className="company-marquee">
-            <div className="company-marquee-row-reverse">
-              {secondRowDuplicated.map((logo, index) => (
-                <div key={`${logo.name}-second-${index}`} className="company-logo-item">
-                  <Image 
-                    src={logo.src} 
-                    alt={logo.name} 
-                    width={120}
-                    height={60}
-                    className="object-contain"
-                  />
-                </div>
-              ))}
+          <div className="relative flex items-center gap-4">
+            {/* Marquee Container */}
+            <div className="relative overflow-hidden w-full">
+              <div className="flex gap-12 pb-2">
+                <motion.div
+                  className="flex gap-12 items-center"
+                  animate={{ x: ['0%', '-50%'] }}
+                  transition={{
+                    x: {
+                      repeat: Infinity,
+                      repeatType: 'loop',
+                      duration: 25,
+                      ease: 'linear',
+                    },
+                  }}
+                >
+                  {duplicatedLogos.map((logo, index) => (
+                    <div
+                      key={`${logo.name}-${index}`}
+                      className="flex shrink-0 items-center justify-center px-8"
+                    >
+                      <Image
+                        src={logo.src}
+                        alt={logo.name}
+                        width={240}
+                        height={100}
+                        className="h-20 w-auto object-contain brightness-110 contrast-110"
+                      />
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
-  )
+  );
 }

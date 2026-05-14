@@ -6,21 +6,29 @@ import { clsx } from 'clsx'
 interface SwipeCarouselProps {
   children: ReactNode[]
   className?: string
+  trackClassName?: string
   autoPlay?: boolean
   interval?: number
   showDots?: boolean
   showArrows?: boolean
   infinite?: boolean
+  dotContainerClassName?: string
+  dotClassName?: string
+  activeDotClassName?: string
 }
 
 export function SwipeCarousel({
   children,
   className = '',
+  trackClassName = '',
   autoPlay = false,
   interval = 3000,
   showDots = true,
   showArrows = true,
-  infinite = false
+  infinite = false,
+  dotContainerClassName = '',
+  dotClassName = '',
+  activeDotClassName = ''
 }: SwipeCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
@@ -140,7 +148,8 @@ export function SwipeCarousel({
 
   const slideClasses = clsx(
     'flex transition-transform duration-300 ease-out',
-    isDragging ? 'transition-none' : ''
+    isDragging ? 'transition-none' : '',
+    trackClassName
   )
 
   const slideStyle = {
@@ -176,9 +185,10 @@ export function SwipeCarousel({
         <>
           <button
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-slate-800 rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute left-3 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/92 text-slate-800 shadow-[0_16px_36px_-22px_rgba(15,23,42,0.38)] transition-all duration-200 hover:scale-105 hover:bg-white disabled:cursor-not-allowed disabled:opacity-50 sm:flex"
             disabled={!infinite && currentIndex === 0}
             aria-label="Previous slide"
+            suppressHydrationWarning
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -186,9 +196,10 @@ export function SwipeCarousel({
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-slate-800 rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute right-3 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/92 text-slate-800 shadow-[0_16px_36px_-22px_rgba(15,23,42,0.38)] transition-all duration-200 hover:scale-105 hover:bg-white disabled:cursor-not-allowed disabled:opacity-50 sm:flex"
             disabled={!infinite && currentIndex === totalSlides - 1}
             aria-label="Next slide"
+            suppressHydrationWarning
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -199,18 +210,25 @@ export function SwipeCarousel({
 
       {/* Dots Indicator */}
       {showDots && totalSlides > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        <div
+          className={clsx(
+            'absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2',
+            dotContainerClassName
+          )}
+        >
           {children.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
               className={clsx(
                 'w-2 h-2 rounded-full transition-all duration-300',
+                dotClassName,
                 currentIndex === index
-                  ? 'bg-primary-600 w-8'
+                  ? clsx('bg-primary-600 w-8', activeDotClassName)
                   : 'bg-white/60 hover:bg-white/80'
               )}
               aria-label={`Go to slide ${index + 1}`}
+              suppressHydrationWarning
             />
           ))}
         </div>
@@ -227,7 +245,18 @@ interface MobileCarouselProps {
 }
 
 export function MobileCompanyCarousel({ items, title, className = '' }: MobileCarouselProps) {
-  if (typeof window === 'undefined' || window.innerWidth >= 768) {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  if (!isMobile) {
     // Desktop view - show grid
     return (
       <div className={className}>

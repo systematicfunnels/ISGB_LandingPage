@@ -107,6 +107,44 @@
   box-shadow: 0 30px 80px -40px rgba(15, 23, 42, 0.35);
 }
 
+.editorial-hover {
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 320ms ease,
+    background-color 320ms ease;
+}
+
+.editorial-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 70px -40px rgba(15, 23, 42, 0.22);
+}
+
+.image-hover img {
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.image-hover:hover img {
+  transform: scale(1.04);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.snap-carousel {
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 1rem;
+}
+
+.snap-carousel > * {
+  scroll-snap-align: start;
+}
+
 .spotlight-card {
   position: relative;
   overflow: hidden;
@@ -186,9 +224,7 @@
 
 .story-card-quote {
   display: -webkit-box;
-  display: box;
   -webkit-box-orient: vertical;
-  box-orient: vertical;
   -webkit-line-clamp: 4;
   line-clamp: 4;
   overflow: hidden;
@@ -196,9 +232,7 @@
 
 .story-card-highlight {
   display: -webkit-box;
-  display: box;
   -webkit-box-orient: vertical;
-  box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
   overflow: hidden;

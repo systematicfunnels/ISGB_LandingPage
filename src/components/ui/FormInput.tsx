@@ -35,6 +35,10 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
       // Trigger validation shake if there's an error
       if (error) {
         setHasError(true)
+        // Haptic feedback on mobile for errors
+        if ('vibrate' in navigator) {
+          navigator.vibrate(10)
+        }
         setTimeout(() => setHasError(false), 400)
       }
       
@@ -43,10 +47,6 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
 
     const handleFocus = () => {
       setIsFocused(true)
-      // Haptic feedback on mobile
-      if ('vibrate' in navigator) {
-        navigator.vibrate(5)
-      }
     }
 
     const inputClasses = clsx(

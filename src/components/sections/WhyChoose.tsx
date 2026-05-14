@@ -1,97 +1,109 @@
-import Image from 'next/image'
-import { BriefcaseBusiness, Building2, GraduationCap, Sparkles, Target } from 'lucide-react'
-import { CAMPUS_IMAGES } from '@lib/constants'
+import Image from 'next/image';
+import { Button } from '@components/ui/Button';
+import { CAMPUS_IMAGES } from '@lib/constants';
 
-const whyChooseItems = [
+const focusAreas = [
   {
-    title: 'Industry-Aligned MBA Curriculum',
-    description: 'Built around current business expectations and practical management thinking.',
-    image: CAMPUS_IMAGES.libraryResearchScene,
-    alt: 'IGSB students using library learning resources',
-    icon: Building2,
-    imageClassName: 'object-cover object-center',
+    step: '01',
+    title: 'Applied learning that stays visible',
+    description: 'Case-led sessions, presentations, and projects keep business learning active.',
   },
   {
-    title: 'Live Projects & Internship Opportunities',
-    description: 'Hands-on exposure through projects, internships, and application-led learning.',
-    image: CAMPUS_IMAGES.computerLabSession,
-    alt: 'IGSB students in a computer lab environment',
-    icon: BriefcaseBusiness,
-    imageClassName: 'object-cover object-center',
+    step: '02',
+    title: 'A campus culture that feels close',
+    description: 'Students build confidence in a supportive, collaborative MBA environment.',
   },
   {
-    title: 'Corporate Exposure & Industry Interaction',
-    description: 'Regular interaction with industry speakers, mentors, and corporate perspectives.',
-    image: CAMPUS_IMAGES.laptopCollaborationSession,
-    alt: 'IGSB students collaborating around a laptop',
-    icon: GraduationCap,
-    imageClassName: 'object-cover object-center',
+    step: '03',
+    title: 'Industry context throughout the journey',
+    description: 'Career preparation stays connected to academic growth instead of appearing late.',
   },
   {
-    title: 'Leadership & Personality Development',
-    description: 'Focused development of confidence, communication, and managerial presence.',
-    image: CAMPUS_IMAGES.outdoorLeadershipDiscussion,
-    alt: 'IGSB students in a group discussion outdoors',
-    icon: Sparkles,
-    imageClassName: 'object-cover object-center',
+    step: '04',
+    title: 'Professional growth with personal guidance',
+    description: 'Faculty support, peer learning, and reflection help students grow with clarity.',
   },
-  {
-    title: 'Placement-Focused Training from Day One',
-    description: 'Structured preparation for interviews, aptitude, and placement readiness.',
-    image: CAMPUS_IMAGES.placementReadyGroup,
-    alt: 'IGSB students in a professional group portrait',
-    icon: Target,
-    imageClassName: 'object-cover object-center',
-  },
-]
+];
 
 export default function WhyChoose() {
   return (
-    <section className="section-shell pt-6">
+    <section className="section-shell pt-8">
       <div className="container-custom">
-        <div className="mb-8 max-w-3xl">
-          <p className="section-kicker reveal-up">Why Choose IGSB?</p>
-          <h2 className="section-title reveal-up reveal-delay-1">
-            An MBA experience shaped around growth, leadership, and corporate readiness.
-          </h2>
-          <p className="reveal-up reveal-delay-2 mt-5 text-lg leading-8 text-slate-600">
-            The IGSB MBA combines industry-oriented learning, experiential exposure, personality development, and placement preparation from day one.
-          </p>
-        </div>
+        <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
+          <div>
+            <p className="section-kicker">The IGSB Experience</p>
+            <h2 className="max-w-[11ch] font-display text-[clamp(2.35rem,4.8vw,4.2rem)] font-semibold leading-[0.97] text-slate-950">
+              One stronger picture of campus life, not a grid of equal features.
+            </h2>
+            <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600 sm:text-base">
+              This section now gives one visual moment clear dominance, then supports it with the
+              four experience themes that matter most.
+            </p>
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {whyChooseItems.map((item, index) => {
-            const Icon = item.icon
-
-            return (
-              <div
-                key={item.title}
-                className={`reveal-up reveal-delay-${Math.min((index % 4) + 1, 4)} spotlight-card hover-panel mesh-surface overflow-hidden rounded-[30px] border border-white/60 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.35)]`}
-              >
-                <div className="relative h-44 overflow-hidden rounded-t-[30px] xl:h-40">
-                  <Image
-                    src={item.image}
-                    alt={item.alt}
-                    fill
-                    className={`w-full ${item.imageClassName}`}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/48 via-slate-950/10 to-transparent" />
-                  <div className="absolute left-5 top-5 inline-flex rounded-2xl bg-white/92 p-3 text-primary-700 shadow-lg">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <span className="absolute right-5 top-5 grid-label rounded-full bg-slate-950/55 px-3 py-1 text-white backdrop-blur-sm">
-                    0{index + 1}
-                  </span>
+            <article className="mt-7 overflow-hidden rounded-[2.6rem] border border-[#e7ddcf] bg-white shadow-[0_26px_80px_-48px_rgba(15,23,42,0.15)]">
+              <div className="relative h-[20rem] overflow-hidden sm:h-[24rem] lg:h-[29rem]">
+                <Image
+                  src={CAMPUS_IMAGES.groupPortrait}
+                  alt="IGSB students in a collaborative group"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="grid gap-5 p-6 md:grid-cols-[0.42fr_0.58fr] md:p-7">
+                <div>
+                  <p className="grid-label">Student Life</p>
+                  <p className="mt-3 font-display text-[clamp(1.9rem,3.6vw,2.95rem)] font-semibold leading-tight text-slate-950">
+                    More guided, more connected, and more visible from day one.
+                  </p>
                 </div>
-                <div className="p-5">
-                  <h3 className="text-xl font-semibold tracking-tight text-slate-950">{item.title}</h3>
-                  <p className="mt-3 leading-7 text-slate-600">{item.description}</p>
+                <div className="text-sm leading-7 text-slate-600 sm:text-base">
+                  Students are not left to assemble the MBA experience on their own. The campus
+                  environment keeps collaboration, support, and career preparation close to daily
+                  learning.
                 </div>
               </div>
-            )
-          })}
+            </article>
+          </div>
+
+          <div className="lg:pt-16">
+            <article className="overflow-hidden rounded-[2.3rem] border border-[#e7ddcf] bg-[#f3ecdf] p-5 shadow-[0_22px_64px_-44px_rgba(15,23,42,0.14)] md:p-6">
+              <div className="relative h-[14rem] overflow-hidden rounded-[1.7rem] sm:h-[17rem]">
+                <Image
+                  src={CAMPUS_IMAGES.computerLabSession}
+                  alt="IGSB students in a computer lab"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </article>
+
+            <div className="mt-5 space-y-4">
+              {focusAreas.map((item) => (
+                <article
+                  key={item.step}
+                  className="rounded-[1.9rem] border border-[#e7ddcf] bg-white px-5 py-5 shadow-[0_18px_48px_-38px_rgba(15,23,42,0.12)]"
+                >
+                  <div className="flex items-start gap-4">
+                    <p className="pt-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary-700">
+                      {item.step}
+                    </p>
+                    <div>
+                      <p className="text-lg font-semibold text-slate-950">{item.title}</p>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-7">
+              <Button href="#stories" variant="cta">
+                See Student Stories
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
