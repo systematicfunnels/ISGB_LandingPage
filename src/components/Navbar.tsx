@@ -41,7 +41,7 @@ export default function Navbar() {
                 alt="IGSB Logo"
                 fill
                 priority
-                className="object-contain object-left transition-all duration-300"
+                className="object-contain object-left transition-all duration-300 brightness-0 invert"
               />
             </div>
           </div>
@@ -51,9 +51,7 @@ export default function Navbar() {
               <a
                 key={item.label}
                 href={item.href}
-                className={`text-sm font-bold transition-colors duration-300 ${
-                  isScrolled ? 'text-white/90 hover:text-white' : 'text-slate-600 hover:text-cyan-600'
-                }`}
+                className="text-sm font-bold transition-colors duration-300 text-white/90 hover:text-white"
               >
                 {item.label}
               </a>
@@ -63,9 +61,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
              <a
               href={CONTACT_INFO.admissions.phoneHref}
-              className={`hidden sm:inline-flex text-sm font-bold transition-colors duration-300 ${
-                isScrolled ? 'text-white' : 'text-slate-900'
-              }`}
+              className="hidden sm:inline-flex text-sm font-bold transition-colors duration-300 text-white"
             >
               {CONTACT_INFO.admissions.phone}
             </a>

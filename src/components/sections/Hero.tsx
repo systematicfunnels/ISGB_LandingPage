@@ -14,47 +14,51 @@ import { CAMPUS_IMAGES, HERO_COPY } from '@lib/constants';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen pt-32 overflow-hidden bg-white text-slate-900">
-      {/* BACKGROUND CAMPUS IMAGE */}
-      <div className="absolute inset-0 z-0">
+    <section className="relative min-h-screen pt-32 overflow-hidden bg-gradient-to-br from-[#1c4f80] via-[#153d62] to-[#1295a5] text-white">
+      {/* BACKGROUND CAMPUS IMAGE - HIDDEN FOR TESTING */}
+      {/* <div className="absolute inset-0 z-0">
         <Image
           src={CAMPUS_IMAGES.campusFacade}
           alt="IGSB Campus"
           fill
-          className="object-cover object-center opacity-40"
+          className="object-cover object-center opacity-60"
           priority
           sizes="100vw"
         />
-        {/* Subtle Gradient Overlays for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/50 to-white" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-white/40" />
+      </div> */}
+
+      {/* Legacy Section Style Background Elements */}
+      <div className="absolute inset-0 opacity-[0.1] [background-image:linear-gradient(rgba(255,255,255,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.5)_1px,transparent_1px)] [background-size:40px_40px] z-0" />
+      <div className="absolute right-0 top-0 h-[50%] w-[50%] translate-x-1/3 -translate-y-1/3 rounded-full bg-white/10 blur-[100px] z-0" />
+      <div className="absolute bottom-0 left-0 h-[40%] w-[40%] -translate-x-1/3 translate-y-1/3 rounded-full bg-[#7ee0c6]/20 blur-[100px] z-0" />
 
       {/* Subtle Grid Background Pattern */}
       <div 
         className="absolute inset-0 z-[1] opacity-[0.03]" 
         style={{ 
           backgroundImage: `
-            linear-gradient(to right, #000 1px, transparent 1px),
-            linear-gradient(to bottom, #000 1px, transparent 1px)
+            linear-gradient(to right, #fff 1px, transparent 1px),
+            linear-gradient(to bottom, #fff 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px' 
         }} 
       />
       
       <div className="mx-auto max-w-[1460px] px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Left Student Cutout */}
-        <div className="absolute -left-20 top-[5%] hidden xl:block w-[450px] h-[650px] z-20 pointer-events-none">
+        {/* Left Student Cutout - Sharp and positioned at bottom for mobile/tablet */}
+        <div className="absolute left-1/2 xl:left-[-5rem] bottom-[-20px] md:bottom-[-40px] xl:top-[5%] xl:bottom-auto -translate-x-1/2 xl:translate-x-0 w-[260px] h-[380px] sm:w-[320px] sm:h-[450px] xl:w-[450px] xl:h-[650px] z-20 pointer-events-none opacity-100 transition-all duration-700">
           <Image
             src={CAMPUS_IMAGES.mbaStudentCutout}
             alt="MBA Student"
             fill
-            className="object-contain object-center drop-shadow-2xl"
+            className="object-contain object-bottom xl:object-center drop-shadow-2xl"
             priority
           />
         </div>
 
-        {/* Right Student Cutout */}
+        {/* Right Student Cutout - Desktop only */}
         <div className="absolute -right-20 top-[5%] hidden xl:block w-[450px] h-[650px] z-20 pointer-events-none">
           <Image
             src={CAMPUS_IMAGES.boyStudentCutout}
@@ -65,17 +69,17 @@ export default function Hero() {
           />
         </div>
 
-        <div className="flex flex-col items-center text-center relative z-30">
+        <div className="flex flex-col items-center text-center relative z-30 pb-[320px] sm:pb-[400px] xl:pb-0">
           {/* TOP BADGE */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 rounded-full border border-slate-900/10 bg-white px-5 py-2 shadow-sm"
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-5 py-2 shadow-sm"
           >
-            <div className="bg-slate-900 rounded-full p-1">
-              <GraduationCap className="h-3 w-3 text-white" />
+            <div className="bg-white rounded-full p-1">
+              <GraduationCap className="h-3 w-3 text-[#153d62]" />
             </div>
-            <span className="text-[13px] font-medium text-slate-800 tracking-tight">
+            <span className="text-[13px] font-medium text-white tracking-tight">
               {HERO_COPY.society} {HERO_COPY.campus}
             </span>
           </motion.div>
@@ -85,12 +89,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mt-10 max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5.5rem)] font-black leading-[1.05] tracking-tight text-slate-950"
+            className="mt-10 max-w-4xl font-display text-[clamp(2.5rem,6.5vw,5.5rem)] font-black leading-[1.05] tracking-tight text-white"
           >
-            Accelerate <span className="relative inline-block">
+            Accelerate <span className="relative inline-block text-[#7ee0c6]">
               Your Career.
               <svg 
-                className="absolute -bottom-2 left-0 w-full h-4 text-primary-600/40" 
+                className="absolute -bottom-2 left-0 w-full h-4 text-[#7ee0c6]/40" 
                 viewBox="0 0 100 10" 
                 preserveAspectRatio="none"
               >
@@ -113,30 +117,30 @@ export default function Hero() {
             transition={{ delay: 0.3 }}
             className="mt-8 max-w-3xl space-y-6"
           >
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary-600">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#7ee0c6]">
               {HERO_COPY.approvals}
             </p>
-            <p className="text-base leading-relaxed text-slate-600 sm:text-lg font-medium">
+            <p className="text-base leading-relaxed text-white/90 sm:text-lg font-medium">
               {HERO_COPY.intro}
             </p>
             
             <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
               <a
                 href="#apply"
-                className="group relative inline-flex items-center justify-center rounded-full bg-accent-500 px-8 py-3.5 text-sm font-bold text-slate-950 shadow-[0_20px_40px_-15px_rgba(245,158,11,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_25px_50px_-12px_rgba(245,158,11,0.6)]"
+                className="group relative inline-flex items-center justify-center rounded-full bg-[#7ee0c6] px-8 py-3.5 text-sm font-bold text-slate-950 shadow-[0_20px_40px_-15px_rgba(126,224,198,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_25px_50px_-12px_rgba(126,224,198,0.6)]"
               >
                 Apply Now
                 <ArrowDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
               </a>
               <a
                 href="/igsb-brochure.pdf"
-                className="inline-flex items-center justify-center rounded-full border-2 border-slate-900 bg-white px-8 py-3.5 text-sm font-bold text-slate-900 transition-all duration-300 hover:bg-slate-50 hover:shadow-lg"
+                className="inline-flex items-center justify-center rounded-full border-2 border-white bg-transparent px-8 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:bg-white/10 hover:shadow-lg"
               >
                 Download Brochure
               </a>
               <a
                 href="tel:+919657856103"
-                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-8 py-3.5 text-sm font-medium text-slate-600 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-slate-900 hover:shadow-md"
+                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-8 py-3.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 hover:text-white hover:shadow-md"
               >
                 Speak to an Admission Counselor
               </a>
@@ -144,8 +148,8 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* FLOATING ELEMENTS */}
-        <div className="absolute inset-0 pointer-events-none z-0">
+        {/* FLOATING ELEMENTS - Increased z-index to be above cutouts */}
+        <div className="absolute inset-0 pointer-events-none z-40">
           {/* Top Left: Book Icon */}
           <motion.div
             animate={{ 
@@ -162,7 +166,7 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, -15, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute left-[8%] top-[45%] hidden lg:flex items-center gap-2 rounded-lg bg-teal-600 px-5 py-2.5 text-white shadow-[0_10px_25px_-5px_rgba(13,152,168,0.4)]"
+            className="absolute left-[15%] top-[45%] hidden lg:flex items-center gap-2 rounded-lg bg-teal-600 px-5 py-2.5 text-white shadow-[0_10px_25px_-5px_rgba(13,152,168,0.4)]"
           >
             <Star className="h-4 w-4 fill-white" />
             <span className="text-[13px] font-bold tracking-tight">Excellence</span>
@@ -173,7 +177,7 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 15, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute right-[8%] top-[15%] hidden lg:flex items-center gap-2 rounded-lg bg-primary-600 px-5 py-2.5 text-white shadow-[0_10px_25px_-5px_rgba(2,132,199,0.4)]"
+            className="absolute right-[15%] top-[18%] hidden lg:flex items-center gap-2 rounded-lg bg-primary-600 px-5 py-2.5 text-white shadow-[0_10px_25px_-5px_rgba(2,132,199,0.4)]"
           >
             <Sparkles className="h-4 w-4 fill-white" />
             <span className="text-[13px] font-bold tracking-tight">Innovation</span>
